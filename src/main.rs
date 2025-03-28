@@ -1,8 +1,15 @@
 use std::io;
+use rand::Rng;
 
 fn main() {
     println!("Guess the number!"); // these run a macro that outputs what we put in the parentheses into the console
     
+    // ! let secret_number = rand::thread_rng().gen_range(1..=100); // Now depreciated, using line below makes it work instead.
+
+    let secret_number = rand::rng().random_range(1..=100); 
+
+    println!("The secret number is: {secret_number}");
+
     println!("Please input your guess.");
 
     let mut guess = String::new(); // Variables in rust are immutable by default, hence why we specifed 'mut'
