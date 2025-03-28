@@ -11,7 +11,8 @@ fn main() {
 
     println!("The secret number is: {secret_number}");
 
-    loop { // Creates an infinite loop
+    loop {
+        // Creates an infinite loop
         println!("Please input your guess.");
 
         let mut guess = String::new(); // Variables in rust are immutable by default, hence why we specifed 'mut'
@@ -36,7 +37,10 @@ fn main() {
             // pattern matching like a switch statement, takes the guess and compares it to the secret_number.
             Ordering::Less => println!("Too Small!"),
             Ordering::Greater => println!("Too large!"),
-            Ordering::Equal => println!("You Win!"),
+            Ordering::Equal => {
+                println!("You Win!");
+                break; // Breaks out of infinite loop when guess is correct.
+            }
         }
     }
 }
