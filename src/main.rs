@@ -9,7 +9,7 @@ fn main() {
 
     let secret_number = rand::rng().random_range(1..=100);
 
-    println!("The secret number is: {secret_number}");
+   // ? println!("The secret number is: {secret_number}"); -- Shows the secret number, for debug.
 
     loop {
         // Creates an infinite loop
