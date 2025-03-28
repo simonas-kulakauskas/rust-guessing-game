@@ -1,4 +1,5 @@
 use std::io;
+use std::cmp::Ordering; // Package that allows for comparison of two values, to see whether they are larger, smaller or equal.
 use rand::Rng;
 
 fn main() {
@@ -23,5 +24,16 @@ fn main() {
         // we also pass &mut guess as an argument to tell the string to store the user input into it. The '&' symbol indicates a reference.
         .expect("Failed to read line"); // This handles any potensial errors by throwing a fail message if the enum returns a err instead of ok.
     
+    let guess: u32 = guess // shadow the guess variable, explicitly set its type to unsigned 32-bit.
+        .trim() // Trim off any trailing or leading white space or other such parts (like the /n and/or /r which is expected when we press enter in the consol)
+        .parse() // It will parse our variable converting it to the type we specified (u32) returns a Result varient.
+        .expect("Please type a number!"); // If result is 'Err', stop program and throw error message, otherwise pass value.
+
     println!("You guessed: {guess}"); // Lastly we print the vlaue using the guess placeholder within curly braces {}. Quite similar to React for example...
+
+    match guess.cmp(&secret_number) { // pattern matching like a switch statement, takes the guess and compares it to the secret_number.
+        Ordering::Less => println!("Too Small!"),
+        Ordering::Greater => println!("Too large!"),
+        Ordering::Equal => println!("You Win!"),
+    }
 }
